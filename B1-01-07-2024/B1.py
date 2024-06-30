@@ -4,7 +4,7 @@
 import os
 import cv2 as cv
 import sys
-from Extra_Module.brightnessNcontrast import basicLinearTransform, gammaCorrection
+from Extra_Module.brightnessNcontrast import basicLinearTransform, gammaCorrection,adjustBrightnessContrast
 from Extra_Module.negative import negative
 from Extra_Module.threshold import basic_threshold,adaptive_threshold
 from matplotlib import pyplot as plt
@@ -44,9 +44,13 @@ def showlinear():
     img_brightness = basicLinearTransform(img,alpha,beta)
     cv.imshow("Brightness and contrast adjustments", img_brightness)
 
+def weightedLinearTransform():
+    img_weighted = adjustBrightnessContrast(img, weightAlpha,weightBeta,weightGamma)
+    cv.imshow("Weighted Img", img_weighted)
     
 cv.namedWindow('Brightness and contrast adjustments')
 cv.namedWindow('Gamma correction')
+cv.namedWindow('Weighted Img')
 
 alpha_init = int(alpha *100)
 cv.createTrackbar('Alpha gain (contrast)', 'Brightness and contrast adjustments', alpha_init, alpha_max, on_linear_transform_alpha_trackbar)
@@ -56,6 +60,30 @@ gamma_init = int(gamma * 100)
 cv.createTrackbar('Gamma correction', 'Gamma correction', gamma_init, gamma_max, on_gamma_correction_trackbar)
 cv.imshow("Negative Image", negative(img))
 
+
+weightBeta = 0
+weightAlpha = 1
+weightGamma = 0
+def weighted_alpha_track_bar(val):
+    global weightBeta
+    weightBeta = val/100
+    weightedLinearTransform()
+def weighted_beta_track_bar(val):
+    global weightAlpha
+    weightAlpha = val/100
+    weightedLinearTransform()
+def weighted_gamma_track_bar(val):
+    global weightGamma
+    weightGamma = val
+    weightedLinearTransform()
+
+cv.createTrackbar('Alpha gain (contrast)', 'Weighted Img', 0, 200, weighted_alpha_track_bar)
+cv.setTrackbarMin('Alpha gain (contrast)', 'Weighted Img', -100)
+cv.createTrackbar('Beta bias', 'Weighted Img', 100, 200, weighted_beta_track_bar)
+cv.createTrackbar('Gamma correction (brightness)', 'Weighted Img', 0, 200, weighted_gamma_track_bar)
+cv.setTrackbarMin('Gamma correction (brightness)', 'Weighted Img', -100)
+
+weightedLinearTransform()
 cv.waitKey(0)
 
 

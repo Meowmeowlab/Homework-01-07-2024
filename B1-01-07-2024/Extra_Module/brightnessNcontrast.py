@@ -8,6 +8,12 @@ def basicLinearTransform(img,alpha:float,beta:float):
     # img_dst = cv.imshow("Brightness and contrast adjustments", img_corrected)
     return res
 
+def adjustBrightnessContrast(img, alpha:float, beta:float, gamma:float):
+    new_img = cv.addWeighted(img, alpha, img, beta, gamma)
+    
+    return new_img
+
+
 def gammaCorrection(img,gamma:float):
     ## [changing-contrast-brightness-gamma-correction]
     lookUpTable = np.empty((1,256), np.uint8)
