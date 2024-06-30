@@ -14,6 +14,8 @@ print(sys.version)
 image_path = os.path.join('.','testimg','meow_400p.jpg')
 img = cv.imread(image_path)
 
+cv.imshow("Original Image",img)
+
 img_brightness = img
 img_gamma = img
 

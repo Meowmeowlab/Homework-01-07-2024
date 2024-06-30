@@ -14,35 +14,35 @@ img_gray_equalize = histogram_equalizer_gray(img)
 def showGraph(graph_img):
     gray_plt = show_histogram_gray(graph_img)
     color_plt = show_histogram_color(graph_img)
-    # gray_plt.show()
-    # color_plt.show()
+    gray_plt.show()
+    color_plt.show()
 
-    ax = gray_plt.gca()
-    line = ax.lines[0]
+    # ax = gray_plt.gca()
+    # line = ax.lines[0]
 
-    ax_color = color_plt.gca()
-    line_color = ax_color.lines
-    print(ax_color)
+    # ax_color = color_plt.gca()
+    # line_color = ax_color.lines
+    # print(ax_color)
 
-    plt.close("all")
-    # Three subplots sharing both x/y axes
-    f, (gray_plt, color_plt) = plt.subplots(2,sharex=True,sharey=True)
-    gray_plt.plot(line.get_xdata(), line.get_ydata())
-    gray_plt.set_title('Grayscale Histogram')
+    # plt.close("all")
+    # # Three subplots sharing both x/y axes
+    # f, (gray_plt, color_plt) = plt.subplots(2,sharex=True,sharey=True)
+    # gray_plt.plot(line.get_xdata(), line.get_ydata())
+    # gray_plt.set_title('Grayscale Histogram')
 
-    color_plt.plot(line_color[0].get_xdata(), line_color[0].get_ydata(),"b")
-    color_plt.plot(line_color[1].get_xdata(), line_color[1].get_ydata(),"g")
-    color_plt.plot(line_color[2].get_xdata(), line_color[2].get_ydata(),"r")
-    color_plt.set_title('Color Histogram')
+    # color_plt.plot(line_color[0].get_xdata(), line_color[0].get_ydata(),"b")
+    # color_plt.plot(line_color[1].get_xdata(), line_color[1].get_ydata(),"g")
+    # color_plt.plot(line_color[2].get_xdata(), line_color[2].get_ydata(),"r")
+    # color_plt.set_title('Color Histogram')
 
-    # ax3.scatter(x, 2 * y ** 2 - 1, color='r')
-    # Fine-tune figure; make subplots close to each other and hide x ticks for
-    # all but bottom plot.
-    f.subplots_adjust(hspace=0.5)
-    #plt.setp([a.get_xticklabels() for a in f.axes[:-1]], visible=False)
+    # # ax3.scatter(x, 2 * y ** 2 - 1, color='r')
+    # # Fine-tune figure; make subplots close to each other and hide x ticks for
+    # # all but bottom plot.
+    # f.subplots_adjust(hspace=0.5)
+    # #plt.setp([a.get_xticklabels() for a in f.axes[:-1]], visible=False)
 
-    plt.show()
-    plt.close("all")
+    # plt.show()
+    # plt.close("all")
 
 cv.imshow("Original Image",img)
 cv.imshow("HSV Color-space",img_HSV_equalize)
