@@ -9,8 +9,6 @@ from Extra_Module.negative import negative
 from Extra_Module.threshold import basic_threshold,adaptive_threshold
 from matplotlib import pyplot as plt
 
-print(sys.version)
-
 image_path = os.path.join('.','testimg','meow_400p.jpg')
 img = cv.imread(image_path)
 
