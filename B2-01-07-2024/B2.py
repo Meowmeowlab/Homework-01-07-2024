@@ -49,7 +49,6 @@ cv.imshow("HSV Color-space",img_HSV_equalize)
 cv.imshow("YCrCb Color-space", img_YCrCb_equalize)
 cv.imshow("YUV Color-space", img_YUV_equalize)
 cv.imshow("Grayscale",img_gray_equalize)
-
 showGraph(img)
 
 cv.waitKey(0)
