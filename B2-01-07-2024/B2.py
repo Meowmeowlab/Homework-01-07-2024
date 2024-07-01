@@ -1,15 +1,20 @@
 import os
 import cv2 as cv
-from matplotlib import pyplot as plt
-from Extra_Module.histogram import histogram_equalizer_color,histogram_equalizer_gray,show_histogram_color,show_histogram_gray
+import numpy as np
+import matplotlib.pyplot as plt
+from Extra_Module.histogramGen import histogram_equalizer_color,histogram_equalizer_gray,show_histogram_color,show_histogram_gray, hist_match
+from Extra_Module.histogramMatching import match_histograms
 
 image_path = os.path.join('.','testimg','meow_400p.jpg')
+img_matching_template = cv.imread(os.path.join('.','testimg','purple_gradient_500x500.png'))
 img = cv.imread(image_path)
 
+cv.waitKey(0)
 img_YCrCb_equalize = histogram_equalizer_color(img)
 img_HSV_equalize = histogram_equalizer_color(img,"hsv")
 img_YUV_equalize = histogram_equalizer_color(img,"yuv")
 img_gray_equalize = histogram_equalizer_gray(img)
+img_matching = match_histograms(img,img_matching_template)
 
 def showGraph(graph_img):
     gray_plt = show_histogram_gray(graph_img)
@@ -49,6 +54,8 @@ cv.imshow("HSV Color-space",img_HSV_equalize)
 cv.imshow("YCrCb Color-space", img_YCrCb_equalize)
 cv.imshow("YUV Color-space", img_YUV_equalize)
 cv.imshow("Grayscale",img_gray_equalize)
+cv.imshow("Histogram Matching",img_matching)
+cv.imshow("Gray Histogram Matching",cv.cvtColor(img_matching, cv.COLOR_BGR2GRAY))
 showGraph(img)
 
 cv.waitKey(0)
