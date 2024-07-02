@@ -9,7 +9,7 @@ from Extra_Module.negative import negative
 from Extra_Module.threshold import basic_threshold,adaptive_threshold
 from matplotlib import pyplot as plt
 
-image_path = os.path.join('.','testimg','meow_400p.jpg')
+image_path = os.path.join('.','testimg','meow2_400p.jpg')
 img = cv.imread(image_path)
 
 cv.imshow("Original Image",img)

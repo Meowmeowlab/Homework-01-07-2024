@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from Extra_Module.histogramGen import histogram_equalizer_color,histogram_equalizer_gray,show_histogram_color,show_histogram_gray, hist_match
 from Extra_Module.histogramMatching import match_histograms
 
-image_path = os.path.join('.','testimg','meow_400p.jpg')
+image_path = os.path.join('.','testimg','meow2_400p.jpg')
 img_matching_template = cv.imread(os.path.join('.','testimg','purple_gradient_500x500.png'))
 img = cv.imread(image_path)
 
@@ -50,6 +50,7 @@ def showGraph(graph_img):
     # plt.close("all")
 
 cv.imshow("Original Image",img)
+cv.imshow("Original Gray Image",cv.cvtColor(img, cv.COLOR_BGR2GRAY))
 cv.imshow("HSV Color-space",img_HSV_equalize)
 cv.imshow("YCrCb Color-space", img_YCrCb_equalize)
 cv.imshow("YUV Color-space", img_YUV_equalize)

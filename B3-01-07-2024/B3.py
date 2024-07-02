@@ -2,7 +2,7 @@ import os
 import cv2 as cv
 from Extra_Module.noisyspclr import add_sp_clr
 
-image_path = os.path.join('.','testimg','meow_400p.jpg')
+image_path = os.path.join('.','testimg','meow2_400p.jpg')
 img = cv.imread(image_path)
 
 noise_percent = 0
@@ -14,20 +14,21 @@ img_gblur = cv.GaussianBlur(img_salt_pepper,(k_size,k_size),5)
 img_mblur = cv.medianBlur(img_salt_pepper,k_size)
 imgDenoise = cv.fastNlMeansDenoisingColored(img_salt_pepper,None,k_size,k_size,7,21)
 
+#meow meow
 
 def showBlurFilter():
     img_salt_pepper = add_sp_clr(img, float(noise_percent/100))
 
-    # img_blur = cv.blur(img_salt_pepper,(k_size,k_size))
-    # img_gblur = cv.GaussianBlur(img_salt_pepper,(k_size,k_size),5)
+    img_blur = cv.blur(img_salt_pepper,(k_size,k_size))
+    img_gblur = cv.GaussianBlur(img_salt_pepper,(k_size,k_size),5)
     img_mblur = cv.medianBlur(img_salt_pepper,k_size)
     # imgDenoise = cv.fastNlMeansDenoising(img_salt_pepper,None,21,7,3)
     # imgDenoise = cv.fastNlMeansDenoisingColored(img_salt_pepper,None,k_size,k_size,7,21)
 
     cv.imshow("Original Image",img)
     cv.imshow("Noise Salt Pepper",img_salt_pepper)
-    # cv.imshow("DeNoise Box Blur",img_blur)
-    # cv.imshow("DeNoise Gaussian Blur",img_gblur)
+    cv.imshow("DeNoise Box Blur",img_blur)
+    cv.imshow("DeNoise Gaussian Blur",img_gblur)
     cv.imshow("DeNoise Mean Blur",img_mblur)
     # cv.imshow("Native OpenCV DeNoiser",imgDenoise)
 
